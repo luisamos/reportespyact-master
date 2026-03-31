@@ -1,9 +1,11 @@
 FROM python:3.12-slim-bookworm AS base
 
 ENV APP_HOME=/usr/src/app \
-    APP_DPLY=/usr/src/app \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+  APP_DPLY=/usr/src/app \
+  APP_TMP=/dev/shm \
+  TMPDIR=/dev/shm \
+  PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONUNBUFFERED=1
 
 WORKDIR ${APP_HOME}
 
@@ -20,4 +22,4 @@ USER appuser
 # run server
 WORKDIR ${APP_DPLY}
 
-CMD ["python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "wsgi:application"]
+CMD ["python", "-m", "gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--worker-tmp-dir", "/dev/shm", "wsgi:application"]

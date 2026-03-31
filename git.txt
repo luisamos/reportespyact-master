@@ -3,7 +3,7 @@
 #
 git init
 git add .
-git commit -m "v.1.0 | 31/03/2026 12:22"
-git branch -M prueba
+git commit -m "v.2.0 | 31/03/2026 15:01"
+git branch -M main
 git remote add origin https://github.com/luisamos/reportespyact-master.git
-git push -u origin prueba
+git push -u origin main
