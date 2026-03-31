@@ -1,6 +1,7 @@
-api-upl2.code-workspace
+reportespyact-master.code-workspace
 __pycache__
 venv
+.git
 .env
 .gitignore
 docker-compose.image.yml
