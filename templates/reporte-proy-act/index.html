@@ -1,0 +1,79 @@
+<!-- index.html -->
+{% extends 'layout.html' %} {% block content %}
+
+
+<section class="section" style="width: 80%;margin: 0px auto;">
+    <div class="container">
+        <div class="filtros">
+            <h1 class="title-reporte">{{title}}</h2>
+                <br>
+                <div class="columns is-vcentered">
+                    <div class="container">
+                        {% include '/reporte-proy-act/ubigeo.html' %}
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+{% include '/reporte-proy-act/filtros.html' %}
+<section class="section" style="width: 80%;margin: 0px auto; line-height: 22px;">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class=" column is-7 " style=" color: black; ">
+                <h3>NOTAS:</h3>
+                <h2>- Los montos se muestran en Soles.</h2>
+                <h2>- La columna <span style="font-weight: bold; color:#133363;">%Avance </span>representa la razón del Devengado entre el PIM, expresado en porcentajes.</h2>
+                <h2>- Fuente: Ministerio de Economía y Finanzas - Portal de datos abiertos MEF / Consulta amigable.</h2>
+                <!--<h2>- Última actualización: <span style="font-weight: bold; color:#27A5CE;">{{fecha[0].fec}}</span> </h2>-->
+                <h2>- Última actualización: <span style="font-weight: bold; color:#27A5CE;">31-12-2025</span> </h2>
+            </div>
+            <div class="column is-5">
+                <div class=" columns is-vcentered cuadro-1 ">
+                    <div class="column">
+                        <span style=" color:black; font-weight: bold; ">% de avance de la ejecución</span>
+                    </div>
+                    <div class="column">
+                        <div class=" form-inline " style=" width: 100%; "><span style=" width: 30%; ">Alto</span>
+                            <div class="has-tooltip-right" style="width: 75px;min-height: 14px;background-color: #fff;border:1px solid black " data-tooltip=" 80% a más">
+                                <div style="width:100%;min-height:14px; background-color: #4EF22C;border:1px solid #4EF22C ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-inline" style=" width: 100%; "><span style=" width: 30%; ">Medio</span>
+                            <div class="has-tooltip-right" style=" width: 75px;min-height: 14px;background-color: #fff;border:1px solid black" data-tooltip=" 50% a 79.99%">
+                                <div style=" width:20%;min-height:14px; background-color: #FFE527;border:1px solid #FFE527 ">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-inline" style=" width: 100%; "><span style=" width: 30%; ">Bajo</span>
+                            <div class="has-tooltip-right" style=" width: 75px;min-height: 14px;background-color: #fff;border:1px solid black " data-tooltip=" 0% a 49.99%">
+                                <div style=" width:10%;min-height:14px; background-color: #FF2424;border:1px solid #FF2424 ">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+<section class="section">
+    <div hidden id="spinner"></div>
+    <div class="container" id="data-mef-d">
+        {% include '/reporte-proy-act/data.html' %}
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <button onclick="location.href='http://visor.geoperu.gob.pe'" class=" button is-primary small " style=" font-weight: normal; width: 232px;background-color: #FF3535;">Regresar a la plataforma </button>
+        </div>
+    </div>
+</section>
+{% include '/reporte-proy-act/compartir.html' %} {% endblock %}

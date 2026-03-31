@@ -1,0 +1,9 @@
+#
+# Reporte por actividades y proyectos
+#
+git init
+git add .
+git commit -m "v.1.0 | 31/03/2026 12:09"
+git branch -M prueba
+git remote add origin https://github.com/luisamos/reportespyact-master.git
+git push -u origin prueba

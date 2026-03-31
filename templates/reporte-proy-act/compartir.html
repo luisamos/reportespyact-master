@@ -1,0 +1,30 @@
+<div id="menu_salida" onclick="verModalShare(this);" class="is-pointer">
+    <span><img src="{{url_for('static', filename='images/icons/salida/share.png')}}" data-file="salida" data-img="share" id="share"></span>
+</div>
+
+<div id="modal_share" style=" display: none; border-radius: 25px;-webkit-box-shadow:0 24px 38px 3px rgba(0,0,0,0.14),0 9px 46px 8px rgba(0,0,0,0.12),0 11px 15px -7px rgba(0,0,0,0.2);
+    box-shadow:0 24px 38px 3px rgba(0,0,0,0.14),0 9px 46px 8px rgba(0,0,0,0.12),0 11px 15px -7px rgba(0,0,0,0.2)">
+    <ul>
+        <li>
+            <div id="divShareFacebook" class="" data-href="{{link}}" data-layout="button" data-size="small">
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{link}}" class="fb-xfbml-parse-ignore fb-compartir"><img alt="Facebbok" src="{{url_for('static', filename='images/icons/salida/modal_share/f_facebook.png')}}"></a>
+            </div>
+        </li>
+        <li>
+            <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url={{link}}&title=Plataforma%20Digital%20Georreferenciada&summary=GeoPerú&source={{link}}" class="fb-xfbml-parse-ignore fb-compartir"><img alt="LikedIn" src="{{url_for('static', filename='images/icons/salida/modal_share/f_likedin.png')}}"></a>
+        </li>
+        <li>
+            <a target="_blank" href="https://web.whatsapp.com/send?text={{link}}" class="fb-xfbml-parse-ignore fb-compartir" data-action="share/whatsapp/share"><img alt="WhatsApp" src="{{url_for('static', filename='images/icons/salida/modal_share/f_whatsapp.png')}}"></a>
+        </li>
+        <li>
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Plataforma Digital Georreferenciada%20{{link}}" class="fb-xfbml-parse-ignore fb-compartir" data-url="{{link}}" data-text=""><img alt="Twitter" src="{{url_for('static', filename='images/icons/salida/modal_share/f_twitter.png')}}"></a>
+        </li>
+        <li>
+            <a target="_blank" href="mailto:?Subject=Reporte de Proyectos y Actividades - Plataforma Digital Georreferenciada Geo Perú&amp;Body={{link}}">
+                <img src="{{url_for('static', filename='images/icons/salida/modal_share/f_mail.png')}}" alt="Email">
+            </a>
+
+        </li>
+
+    </ul>
+</div>

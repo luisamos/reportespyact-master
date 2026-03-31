@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  app:
+    restart: on-failure
+    build:
+      context: .
+      target: base
+    command: "flask run -h 0.0.0.0"
+    ports: 
+      - "5011:5000"
+    # env_file: 
+    #   - .env
+    environment: 
+      # export DOCKER_GATEWAY_HOST=$(hostname -I |awk '{print $1}')
+      - DB_HOST=${LOCAL_HOST_IP}
+    volumes:
+      - .:/usr/src/app
+  

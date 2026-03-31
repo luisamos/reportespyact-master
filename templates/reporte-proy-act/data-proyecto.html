@@ -1,0 +1,31 @@
+<tr>
+    <td class="table-container" colspan="7" style="padding: 1em 0em;" id="{{proyecto[0].id if proyecto else ''}}">
+        <table class="table is-fullwidth">
+            <thead style="background-color: #6F6F6F;">
+                <th>N</th>
+                <th>FUNCION</th>
+                <th>PROYECTO</th>
+                <th>PIA</th>
+                <th>PIM</th>
+                <th>DEVENGADO</th>
+                <th>GIRADO</th>
+                <th>AVANCE</th>
+                <thead>
+                    <tbody>
+                        {% for i in proyecto %}
+                        <tr id="{{i.id}}">
+                            <td style="width: 5;">{{i.id}}</td>
+                            <td style="width: 10%;">{{i.funcionnombre}}</td>
+                            <td style="width: 40%;">{{i.proyecto}}<a href="#" target="popup" onClick="MyWindow=window.open('https://apps5.mineco.gob.pe/transparencia/Reportes/RptFichaProy.aspx?y={{anio}}&ap={{i.idproy}}','popup','width=600,height=600'); return false;"> CUP:{{i.idproy}}</a></td>
+                            <td style="width: 10%;">{{format_price(i.pia)}}</td>
+                            <td style="width: 10%;">{{format_price(i.pim)}}</td>
+                            <td style="width: 10%;">{{format_price(i.devengado)}}</td>
+                            <td style="width: 10%;">{{format_price(i.girado)}}</td>
+                            <td style="width: 10%;">{{barra(i.avance)|safe}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </thead>
+        </table>
+    </td>
+</tr>

@@ -1,0 +1,15 @@
+{% macro fuente(text) %}
+<div class="fuente">
+    <picture class="fuente__image d-flex">
+        <img class="m-auto"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAVCAYAAABYHP4bAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGiSURBVHgB7VXtbcIwELUD/6EbmA3YADoB7QQNE8AAfDgwQSYojNAJmmzQDQgbhP9R0vfSC3JpGtRK8CsnWbHv3d17dqQ7rS5ss9kc+NVaJ0VRfOR5/matjVSDAR97njdBzhA5hr7VajVwYzSDEDBGQIJzgoRXFJ8KGQuMJDmCP0B8IsVNp9N5ATZHHAXFFAYodWoYYAb+SAdBYOEY8QbiZHGzWCyOjmImWKwRCSWO6kOsXUVexSL/gJiI4kVk3BU8xlWt+3QXT8NCPvcQtqNqKB7An6p6S5bL5aPEW3676u9GlaqBpNY8dSdriVqiluhGRFmWPaj/W7/O+aMFsROjKb5vt1u2Gnbs0G2adQa8j04+Q7xPIjbUq0Rohs+SPETCnKRotN9GhEPATr3G9omCQDT9bXZ1G1RytvgyIny2ftzSomCJY7/mDbD2WINrTbacRyjUQ4E9zkaubs4BWnMkcJgpFJxxigrEwoFgfWDnfyNDlDixCc6n6kY+3nisvkZAinV0kvg8PZJj8VwpTzkIgTH+JIVL41QGRmIKoLBQ3cs+AXKHBMJCFO6aAAAAAElFTkSuQmCC"
+            alt="book" />
+    </picture>
+    <div class="fuente__text d-flex">
+        <p class="my-auto">
+            <span class="font-weight-bold">Fuente</span><br>
+            <span id="fuente">{{text}}</span>
+        </p>
+    </div>
+</div>
+{% endmacro %}

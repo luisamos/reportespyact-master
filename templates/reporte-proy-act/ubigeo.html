@@ -1,0 +1,9 @@
+<div style="border: 1px solid #D9D9D9;box-sizing: border-box;border-radius: 8px;" class="columns">
+
+    <div class="column" style=" line-height: 29px; text-align: center;"><label class="ubigeo" style="color:#27A5CE">Departamento:</label> <br><label class="ubigeo-d">{{ubigeo[0].nom_dpto}}</label></div>
+    {% if ubigeo[0]|length>1%}
+    <div class="column" style=" line-height: 29px; text-align: center;"><label class="ubigeo" style="color:#27A5CE">Provincia:</label> <br><label class="ubigeo-d">{{ubigeo[0].nom_prov}}</label></div>
+    {% endif %} {% if ubigeo[0]|length >2 %}
+    <div class="column" style=" line-height: 29px; text-align: center;"><label class="ubigeo" style="color:#27A5CE">Distrito:</label> <br><label class="ubigeo-d">{{ubigeo[0].nom_dist}}</label></div>
+    {% endif %}
+</div>

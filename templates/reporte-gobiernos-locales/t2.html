@@ -1,0 +1,120 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+        <tr>
+            <td>
+                <table width="100%" class="marco_general">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table width="100%" class="marco_individual">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table width="100%" class="titulo_general">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>&nbsp;&nbsp;UBICACIÓN GEOGRÁFICA</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table width="100%" align="center" class="general">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Departamento</th>
+                                                            <th>Provincia</th>
+                                                            <th>Distrito</th>
+                                                            <th width="25%">Ubigeo</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center" class="texto">{{data_ubigeo[0].nom_dpto}}</td>
+                                                            <td align="center" class="texto">{{data_ubigeo[0].nom_prov}}</td>
+                                                            <td align="center" class="texto">{{data_ubigeo[0].nom_dist}}</td>
+                                                            <td align="center" class="texto">{{data_ubigeo[0].cod_dist}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+
+
+                                <table width="100%" class="marco_individual">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table width="100%" class="titulo_general">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>&nbsp;&nbsp;reporte {{titulo}} de LA PROVINCIA - {{data_ubigeo[0].nom_prov}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table width="100%" align="center" class="general">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="2%">#</th>
+                                                            <th>Distrito</th>
+                                                            <th>Unidad ejecutora </th>
+                                                            <th>{{titulo2}}</th>
+                                                            <th>Presupuesto institucional modificado de los proyectos </th>
+                                                            <th>Presupuesto institucional modificado de las actividades</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for i in data %} {% if ubigeo==i.cod_dist%}
+                                                        <tr>
+                                                            <td align="center" class="titulo11">{{i.id}}</td>
+                                                            <td align="center" class="titulo11">{{i.nom_dist}}</td>
+                                                            <td align="center" class="titulo11">{{i.nombre}}</td>
+                                                            <td align="center" class="titulo11">{{format_price(i.t)}}</td>
+                                                            <td align="center" class="titulo11">{{format_price(i.p)}}</td>
+                                                            <td align="center" class="titulo11">{{format_price(i.a)}}</td>
+                                                        </tr>
+                                                        {% else %}
+                                                        <tr>
+                                                            <td align="center" class="numero11">{{i.id}}</td>
+                                                            <td align="center" class="numero11">{{i.nom_dist}}</td>
+                                                            <td align="center" class="numero11">{{i.nombre}}</td>
+                                                            <td align="center" class="numero11">{{format_price(i.t)}}</td>
+                                                            <td align="center" class="numero11">{{format_price(i.p)}}</td>
+                                                            <td align="center" class="numero11">{{format_price(i.a)}}</td>
+                                                        </tr>
+                                                        {% endif %} {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table><br>
+                                <table class="fuente_general" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th><b>Fuente:</b>
+                                                <br>Fuente: Ministerio de Economía y Finanzas - Consulta Amigable Ultima actualización: 11 de Noviembre de 2019 </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table>
+                                    <!-- <tbody>
+                                        <tr>
+                                            <td><br>
+                                                <!--a href='javascript:window.print(); void 0;'><img src="imajes/impresion.png" border="0" alt="Imprimir"/></a-->
+                                    <!--<a href="consulta_canon_dist.phtml?excel=excel&amp;capa=consulta_canon_dist&amp;ovalor=1673"><img src="imajes/excel.png" border="0" alt="Exportar en formato excel"></a>-->
+                                    <!--a href="javascript:window.close();"><img src="imajes/close.png" border="0" alt="Cerrar ventana"/></a-->
+                                    <!--			<a href="consulta_ccpp_mail.php?ovalor="><img src="imajes/mail.png" width="100" border="0"/></a> -->
+                                    <!--   </td>
+                                        </tr>
+                                    </tbody> -->
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

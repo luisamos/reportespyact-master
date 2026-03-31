@@ -1,0 +1,29 @@
+{% for i in nivel %}
+<div class="table-container">
+    <table id="dataG" class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th style="width: 10%;">Nº</th>
+                <th style="width: 40%;"> Nivel Gobierno</th>
+                <th style="width: 10%;">PIA</th>
+                <th style="width: 10%;">PIM</th>
+                <th style="width: 10%;">Devengado</th>
+                <th style="width: 10%;">Girado</th>
+                <th style="width: 8%;">% Avance</th>
+            </tr>
+        </thead>
+
+        <tbody style="text-align: left;">
+            <tr onclick="onclickRowNivel('mef{{i.id}}','{{anio}}','{{cod_ubigeo}}','{{act}}','{{i.idnivelgobierno}}','{{fun}}','{{i.id}}','{{cat}}','{{sec}}','{{amb}}')" id='mef{{i.id}}' style="font-weight: bold;cursor: pointer;" acc="off" load="on">
+                <td>{{ i.id}}</td>
+                <td>{{ i.nombre }}</td>
+                <td>{{ format_price(i.pia) }}</td>
+                <td>{{ format_price(i.pim) }}</td>
+                <td>{{ format_price(i.devengado) }}</td>
+                <td>{{ format_price(i.girado) }}</td>
+                <td>{{ barra(i.avance)|safe }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endfor %}

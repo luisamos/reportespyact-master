@@ -1,0 +1,28 @@
+version: "2.4"
+services:
+  geoperu-reportespyact:
+    container_name: geoperu-reportespyact
+    restart: always
+    image: docker.pkg.github.com/geo-peru/reportespyact/geoperu-reportespyact:latest
+    # env_file:
+    #   - .env
+    environment:
+      - TZ=America/Lima
+      # export DOCKER_GATEWAY_HOST=$(hostname -I |awk '{print $1}')
+      - DB_HOST=localhsot
+      - DB_PORT=5432
+      - DB_NAME=bd
+      - DB_USER=user
+      - DB_PASS=pass
+      - BASE_URL=https://visor.geoperu.gob.pe/reportespyact/
+    ports:
+      - "5006:5000"
+    networks:
+      - geoperu
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: FLUENTD_ADDR
+networks:
+  geoperu:
+    external: true

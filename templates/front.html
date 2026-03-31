@@ -1,0 +1,59 @@
+<html>
+  <head>
+ 
+    <script src="https://unpkg.com/@superset-ui/embedded-sdk"></script>
+    <style>
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+        pretext {
+          margin-right: 10%;
+          margin-left: 10%;
+          font-family: Tahoma;}
+    </style>
+      <!-- ESTILOS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+      <!-- <link rel="stylesheet" href="/static/bulma-extensions.min.css"> -->
+      <link rel="stylesheet" href="{{url_for('static', filename='css/baloom.css')}}">
+      <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+      <link rel="stylesheet" href="{{url_for('static', filename='css/bulma-tooltip.min.css')}}">
+  </head>
+  <body>
+    <div class="pretext">
+      <div style="box-shadow:0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);height: 68px;">
+        <div class="columns is-gapless">
+            <div class="column is-narrow">
+                <img class="logosegdi" src="{{url_for('static', filename='images/gob.pe.svg')}}">
+            </div>
+            <div class="column">
+    
+            </div>
+            <div class="column is-narrow">
+                <img class="logosayhuite" height="68" src="{{url_for('static', filename='images/logogeo.svg')}}">
+            </div>
+        </div>
+    </div>
+      <div id="dashboard-container"></div>
+      <script>
+        async function fetchGuestTokenFromBackend() {
+            let response = await fetch('/reportespyact/guest-token');
+            let data = await response.json()
+            return data 
+        }
+
+            const myDashboard = supersetEmbeddedSdk.embedDashboard({
+              id: "cd9167aa-000e-432a-808d-faf263756431",
+              supersetDomain: "https://analytics.geoperu.gob.pe",
+              mountPoint: document.getElementById("dashboard-container"),
+              fetchGuestToken: () => fetchGuestTokenFromBackend(),
+              dashboardUiConfig: {
+                hideTitle: true,
+                hideChartControls: true
+              },
+            });
+      </script>
+    </div>
+  </body>
+</html>

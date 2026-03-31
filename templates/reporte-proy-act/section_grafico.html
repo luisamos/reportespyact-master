@@ -1,0 +1,38 @@
+<section class="section">
+    <div class=" container ">
+        <h1 class="title-reporte ">Gasto público por Funciones Actividades y Proyectos (2015-2020)</h1>
+
+        <div class="columns is-vcentered ">
+            <div class="column is-7 ">
+                {% include '/reporte-proy-act/ubigeo-grafico.html' %}
+            </div>
+            <div class="column ">
+                <div class="columns is-vcentered " style="flex-grow: none; ">
+                    <div class="column ">
+                        <div class="field ">
+                            <input id="chkChartAct " type="checkbox " onclick="SetGrafico();" name="chkChartAct" {{checked.achecked}}>
+                            <label for="chkChartAct ">Actividades</label>
+                            <input id="chkChartPro " type="checkbox " onclick="SetGrafico();" name="chkChartPro" {{checked.pchecked}}>
+                            <label for="chkChartPro ">Proyectos</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-centered ">
+                <button class=" button is-primary small " style=" font-weight: bold; width: 232px;color:black; background-color: #E7E7E7; ">Activar Todas las Funciones</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="container ">
+    <div class="columns ">
+        <div class="column ">
+            <div>
+                {% include '/reporte-proy-act/grafico.html'%}
+            </div>
+        </div>
+
+    </div>
+</div>

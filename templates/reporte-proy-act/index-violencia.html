@@ -1,0 +1,136 @@
+<!-- index.html -->
+{% extends 'layout-violencia.html' %} {% block content %}
+
+
+<section class="section" style="width: 80%;margin: 0px auto;">
+    <div class="container">
+        <div class="filtros">
+            <h1 class="title-reporte">{{title}}</h2>
+                <br>
+                <div class="columns is-vcentered">
+                    <div class="container">
+                        {% include '/reporte-proy-act/ubigeo.html' %}
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+{% include '/reporte-proy-act/filtros.html' %}
+<section class="section" style="width: 80%;margin: 0px auto; line-height: 22px;">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class=" column is-7 " style=" color: black; ">
+                <h3>NOTAS:</h3>
+                <h2>- Los montos se muestran en Nuevos Soles.</h2>
+                <h2>- La columna <span style="font-weight: bold; color:#133363;">%Avance </span>representa la razón del Devengado entre el PIM, expresado en porcentajes.</h2>
+                <h2>- Fuente: Ministerio de Economía y Finanzas - Consulta Amigable</h2>
+                <h2>- Última actualización: <span style="font-weight: bold; color:#27A5CE;">{{fecha[0].fec}}</span> </h2>
+            </div>
+            <div class="column is-5">
+                <div class=" columns is-vcentered cuadro-1 ">
+                    <div class="column">
+                        <span style=" color:black; font-weight: bold; ">% de avance de la ejecución</span>
+                    </div>
+                    <div class="column">
+                        <div class=" form-inline " style=" width: 100%; "><span style=" width: 30%; ">Alto</span>
+                            <div class="has-tooltip-right" style="width: 75px;min-height: 14px;background-color: #fff;border:1px solid black " data-tooltip=" 80% a más">
+                                <div style="width:100%;min-height:14px; background-color: #4EF22C;border:1px solid #4EF22C ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-inline" style=" width: 100%; "><span style=" width: 30%; ">Medio</span>
+                            <div class="has-tooltip-right" style=" width: 75px;min-height: 14px;background-color: #fff;border:1px solid black" data-tooltip=" 50% a 79.99%">
+                                <div style=" width:20%;min-height:14px; background-color: #FFE527;border:1px solid #FFE527 ">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-inline" style=" width: 100%; "><span style=" width: 30%; ">Bajo</span>
+                            <div class="has-tooltip-right" style=" width: 75px;min-height: 14px;background-color: #fff;border:1px solid black " data-tooltip=" 0% a 49.99%">
+                                <div style=" width:10%;min-height:14px; background-color: #FF2424;border:1px solid #FF2424 ">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+<section class="section">
+    <div hidden id="spinner"></div>
+    <div class="container" id="data-mef-d">
+        {% include '/reporte-proy-act/data.html' %}
+    </div>
+</section>
+
+<!-- <section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-three-fifths is-full is-centered">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered"><button onclick="GetDataGrafico('sector','{{cod_ubigeo}}')" class="is-centered btn-grafico small" id="btnSec" active="1">Gráfico Sectores</button></div>
+                    <div class="column has-text-centered"><button onclick="GetDataGrafico('funcion','{{cod_ubigeo}}')" class="is-centered btn-grafico small" id="btnFun" active="1">Gráfico Funciones</button></div>
+                    <div class="column has-text-centered"><button onclick="GetDataGrafico('cat_pre','{{cod_ubigeo}}')" class="is-centered btn-grafico small" id="btnCat" active="1">Categoria Presupuestal</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<section class="section">
+    <div class="container">
+        <h1 class="title-reporte" id="title-grafico">Gasto público (2012-2020)</h1>
+
+        <div class="columns is-vcentered">
+            <div class="column is-6">
+                {% include '/reporte-proy-act/ubigeo-grafico.html' %}
+            </div>
+            <div class="column">
+                <div class="columns is-vcentered" style="flex-grow: none;">
+                    <div class="column">
+                        <div class="field">
+                            <input id="chkChartAct" type="checkbox" onclick="SetGrafico('T')" name="chkChartAct" {{checked.achecked}}>
+                            <label for="chkChartAct">Actividades</label>
+                            <input id="chkChartPro" type="checkbox" onclick="SetGrafico('T')" name="chkChartPro" {{checked.pchecked}}>
+                            <label for="chkChartPro">Proyectos</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="buttons has-addons">
+                    <button class="button" onclick="SetGrafico('E')">G. Nacional</button>
+                    <button class="button" onclick="SetGrafico('R')">G. Regional</button>
+                    <button class="button" onclick="SetGrafico('M')">G. Local</button>
+                </div> -->
+            </div>
+            <!-- <div class="column is-centered">
+                <button onclick="SWGraficoShow();" class="is-centered btn-grafico small btn-inactive" id="btnShow" active="0">Activar todo</button>
+            </div> -->
+        </div>
+
+    </div>
+</section>
+
+<div class="container">
+    <div class="columns">
+        <div class="column">
+            <div>
+                {% include '/reporte-proy-act/grafico.html'%}
+            </div>
+        </div>
+
+    </div>
+</div>
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <button onclick="location.href='http://visor.geoperu.gob.pe'" class=" button is-primary small " style=" font-weight: normal; width: 232px;background-color: #FF3535;">Regresar a la plataforma </button>
+        </div>
+    </div>
+</section>
+{% include '/reporte-proy-act/compartir.html' %} {% endblock %}

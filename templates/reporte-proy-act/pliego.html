@@ -1,0 +1,11 @@
+{% for i in pliego %}
+<tr onclick="onclickRowPliego('{{a[5]}}{{a[6]}}{{i.idpliego}}','{{a[0]}}','{{a[1]}}','{{a[3]}}','{{a[5]}}','{{a[6]}}','{{a[4]}}','{{i.idpliego}}','{{a[9]}}','{{orden}}.{{i.id}}','{{a[10]}}')" load="on" acc="off" class="is-pointer" id="{{a[5]}}{{a[6]}}{{i.idpliego}}">
+    <td>{{orden}}.{{i.id}}</td>
+    <td>PLIEGO: {{i.nombre}}</td>
+    <td>{{ format_price(i.pia) }}</td>
+    <td>{{ format_price(i.pim) }}</td>
+    <td>{{ format_price(i.devengado) }}</td>
+    <td>{{ format_price(i.girado) }}</td>
+    <td>{{barra(i.avance)|safe}}</td>
+</tr>
+{% endfor %}

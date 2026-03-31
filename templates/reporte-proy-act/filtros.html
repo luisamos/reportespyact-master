@@ -1,0 +1,201 @@
+<section class="section" style="width: 80%; margin: 0px auto">
+  <div class="container">
+    <div class="columns">
+      <!-- filtro1 -->
+      <div class="column is-6">
+        <div class="control filtro" style="min-height: 336px">
+          <h3 style="text-align: center; font-size: 24px; font-weight: bold">
+            Por Actividad / Proyecto
+          </h3>
+          <div
+            class="container"
+            style="line-height: 29px; margin: 1rem 2rem 1rem 2rem"
+          >
+            <div class="columns">
+              <!-- checkbox -->
+              <div class="column is-4">
+                <div class="field">
+                  <label>Reporte de:</label>
+                </div>
+              </div>
+              <div class="column is-8">
+                <div class="field">
+                  <input
+                    class="is-checkradio"
+                    id="chkActividades"
+                    type="checkbox"
+                    name="chkActividades"
+                    {{checked.achecked}}
+                  />
+                  <label for="chkActividades">Actividades</label>
+                  <input
+                    class="is-checkradio"
+                    id="chkAProyectos"
+                    type="checkbox"
+                    name="chkProyectos"
+                    {{checked.pchecked}}
+                  />
+                  <label for="chkProyectos">Proyectos</label>
+                </div>
+              </div>
+              <!-- end checkbox -->
+            </div>
+            <div class="columns is-gapless">
+              <div class="field is-horizontal">
+                <div class="field is-narrow">
+                  <label for="cboano">Año:</label>
+                </div>
+                <div class="field is-narrow">
+                  <div class="custom-select">
+                    <select id="cboAnio" style="width: 134px">
+                      <option>2025</option>
+                      <option>2024</option>
+                      <option>2023</option>
+                      <option>2022</option>
+                      <option>2021</option>
+                      <option>2020</option>
+                      <option>2019</option>
+                      <option>2018</option>
+                      <option>2017</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="field is-horizontal">
+
+                                <div class="field is-narrow">
+                                    <label for="cbofin">Tipo:</label>
+                                </div>
+                                <div class="field is-narrow">
+                                    <div class="custom-select" >
+                                        <select id="cbofin"style="width: 100%;">
+                                        <option>Con financiamiento</option>
+                                        <option>Sin financiamiento</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div> -->
+            </div>
+
+            <div class="columns is-gapless">
+              <div class="column is-3"><label>Función:</label></div>
+              <div class="column is-9">
+                <div class="custom-select">
+                  <select
+                    onchange="reloadedCboPPTO('{{anio}}','{{cod_ubigeo}}','{{act}}')"
+                    id="cbofun"
+                    style="width: 100%"
+                  >
+                    {% for i in funcion %}
+                    <option value="{{i.cod}}">{{i.desc}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <label for="txtCat">Categoría Presupuestal:</label><br />
+                <div class="control">
+                  <div class="custom-select">
+                    <select id="cboppto" style="width: 100%">
+                      {% for i in ppto %}
+                      <option value="{{i.cod }}">{{i.desc}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns is-centered">
+              <button
+                onclick="reloadedD('{{cod_ubigeo}}','{{act}}','{{amb}}')"
+                class="button is-primary small"
+                style="
+                  font-weight: bold;
+                  width: 150px;
+                  background-color: #27a5ce;
+                "
+              >
+                Ver Reporte
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- end filtro1 -->
+      </div>
+
+      <div class="column is-6" id="filtro" disabled="true">
+        <!-- filtro2 -->
+        <div class="control filtro" style="min-height: 347px">
+          <h3 style="text-align: center; font-size: 24px; font-weight: bold">
+            Por proyecto de inversión
+          </h3>
+          <div
+            class="container"
+            style="line-height: 29px; margin: 1rem 2rem 1rem 2rem"
+          >
+            <div class="columns">
+              <div class="column">
+                <label for="txtCat">Nombre del Proyecto:</label><br />
+                <div class="control">
+                  <input
+                    id="txtPry"
+                    style="
+                      width: 100%;
+                      height: 28px;
+                      text-transform: uppercase;
+                      border: none;
+                      background-color: #e7e7e7;
+                    "
+                    type="text"
+                    placeholder="Ejm. ESTUDIOS DE PRE-INVERSIÓN"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <div class="field is-horizontal">
+                  <div class="field">
+                    <label for="txtCod">Código unificado o SNIP: </label>
+                  </div>
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <input
+                        id="txtCod"
+                        style="
+                          width: 100%;
+                          height: 28px;
+                          border: none;
+                          background-color: #e7e7e7;
+                        "
+                        type="text"
+                        placeholder="Escriba el código aquí"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="columns is-centered">
+              <button
+                onclick="reloadedF('{{anio}}','{{cod_ubigeo}}')"
+                class="button is-primary small"
+                style="
+                  font-weight: bold;
+                  width: 150px;
+                  background-color: #27a5ce;
+                "
+              >
+                Ver Reporte
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- end filtro22-->
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+<!-- layout.html -->
+<!doctype html>
+<html>
+
+<head>
+    <title>{{title}}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <!-- <link rel="stylesheet" href="/static/bulma-extensions.min.css"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/baloom.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bulma-tooltip.min.css')}}">
+    <!-- HIGCHART -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/grafico.css')}}">
+
+    <!-- <script src="/static/bulma-extensions.min.js"></script> -->
+
+</head>
+
+<body>
+    {% include '/reporte-proy-act/cabecera.html' %} {% block content %} {% endblock %}
+</body>
+<!-- scripts -->
+<div hidden id="spinner"></div>
+<!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+<script src="{{url_for('static', filename='js/grafico.js')}}"></script>
+<script>const IS_DEV = {{ is_dev | tojson }};</script>
+<script src="{{url_for('static', filename='js/funciones.js')}}"></script>
+<script src="{{url_for('static', filename='js/modal.js')}}"></script>
+
+</html>

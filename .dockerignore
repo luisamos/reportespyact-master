@@ -1,0 +1,11 @@
+api-upl2.code-workspace
+__pycache__
+venv
+.env
+.gitignore
+docker-compose.image.yml
+docker-compose.prod.yml
+docker-compose.yml
+Dockerfile
+flask.txt
+git.txt

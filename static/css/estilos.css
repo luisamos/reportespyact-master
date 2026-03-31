@@ -1,0 +1,556 @@
+/* modificado nancy */
+
+body {
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+.titulo_reporte {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    color: #133363;
+}
+
+.marco_reporte {
+    border-collapse: collapse;
+    border: none;
+}
+
+.lista_titulo {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    font-weight: bold;
+    text-align: left;
+    padding: 5px;
+}
+
+.lista_texto {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    border: 1px solid white;
+    text-align: left;
+    padding: 5px;
+}
+
+.lista_textosub {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    background-color: white;
+    border: 1px solid #acacac;
+    text-align: left;
+    padding: 5px;
+}
+
+.nivel1 {
+    /*muy bajo*/
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+}
+
+.nivel2 {
+    /*bajo*/
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+}
+
+.nivel3 {
+    /*medio*/
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+}
+
+.nivel4 {
+    /*alto*/
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+}
+
+.nivel5 {
+    /*muy alto*/
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+}
+
+.nivel6 {
+    /*muy alto*/
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+}
+
+.nivel7 {
+    /*muy alto*/
+    ##background-color: #ff2b00;
+    ##border: 1px solid white;
+    ##text-align: center;
+    ##padding: 5px;
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid #acacac;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+}
+
+.salud1 {
+    /*centro de salud*/
+    background-color: #e5a0be;
+    border: 1px solid white;
+    text-align: center;
+    padding: 5px;
+}
+
+.salud2 {
+    /*hospital*/
+    background-color: #db7da6;
+    border: 1px solid white;
+    text-align: center;
+    padding: 5px;
+}
+
+.salud3 {
+    /*instituto*/
+    background-color: #d2598d;
+    border: 1px solid white;
+    text-align: center;
+    padding: 5px;
+}
+
+.salud4 {
+    /*fondo de tabla*/
+    background-color: #FEFAF5;
+    border: 1px solid white;
+    text-align: center;
+    padding: 5px;
+}
+
+.fondocuerpo {
+    background-color: #F9EEE3;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion1 {
+    /*inicial*/
+    background-color: #cde4fe;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion2 {
+    /*primaria*/
+    background-color: #b0d5fd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion3 {
+    /*secundaria*/
+    background-color: #9dcbfd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion4 {
+    /*tecnica*/
+    background-color: #86befd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion5 {
+    /*especial*/
+    background-color: #66adfd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion6 {
+    /*ocupacional*/
+    background-color: #55a5fd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion7 {
+    /*ocupacional*/
+    background-color: #3e99fd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion8 {
+    /*ocupacional*/
+    background-color: #248bfd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+.educacion9 {
+    /*ocupacional*/
+    background-color: #0f80fd;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2px;
+    font-size: 9px;
+}
+
+table.marco_general {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    border: 0px;
+    border-spacing: 0px;
+    padding: 10px;
+}
+
+table.marco_individual {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    border: none;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    padding: 1px;
+}
+
+table.titulo_general {
+    border: 0px;
+    border-spacing: 0px;
+}
+
+.logosegdi {
+    max-width: 30vw;
+    max-height: 20vh;
+}
+
+.logosayhuite {
+    max-width: 20vw;
+    max-height: 10vh;
+}
+
+.titulo_texto {
+    width: 80vw;
+    height: 60vh;
+    text-align: center;
+    font-size: 3vmin;
+}
+
+table.titulo_general tr td {
+    text-transform: uppercase;
+    font-size: 12px;
+    /*background-color: #E7B689;*/
+    background-color: #133363;
+    color: #FFFFFF;
+    /*text-shadow:#000 0.1em 0.1em 0.1em;*/
+    font-weight: bold;
+    padding: 10px;
+}
+
+table.general {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    border: 0px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table.general thead tr th {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    /*background-color: #EECBAC;*/
+    background-color: #EEEEEE;
+    border: 1px solid #ACACAC;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+table.general tbody tr td.texto {
+    /*background-color: #F4E0CE;*/
+    background-color: #FFFFFF;
+    text-align: center;
+    border: 1px solid #acacac;
+    padding: 5px;
+}
+
+table.general tr td.titulosub {
+    text-align: center;
+    font-weight: bold;
+    background-color: #d8d8d8;
+    border: 1px solid white;
+    padding: 5px;
+}
+
+table.general tr td.textosub {
+    text-align: center;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    border-top: 1px solid gainsboro;
+    padding: 5px;
+}
+
+table .fuentesub td {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #999999;
+    background-color: #ededed;
+    border: 1px solid #d5d5d5;
+    padding: 5px;
+}
+
+table.general tbody tr.rowpar {
+    background-color: #FAFAFA;
+}
+
+table.general tbody tr td.titulo1 {
+    font-weight: bold;
+    background-color: #D8D8D8;
+    border: 1px solid #ACACAC;
+    border-top: 1px solid white;
+    padding: 5px;
+}
+
+table.general tbody tr td.texto1 {
+    /*border: 1px solid #f4e0ce;*/
+    border: 1px solid #D8D8D8;
+    padding: 5px;
+}
+
+table.general tbody tr td.numero1 {
+    /*border: 1px solid #f4e0ce;*/
+    border: 1px solid #d8d8d8;
+    padding: 5px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+table.general tbody tr td.titulo11 {
+    /*background-color: #F4E0CE;*/
+    background-color: #ffffff;
+    border: 2px solid #acacac;
+    font-weight: bold;
+    padding: 5px;
+}
+
+table.general tbody tr td.texto11 {
+    border: 1px solid #acacac;
+    padding: 5px;
+}
+
+table.general tbody tr td.numero11 {
+    border: 1px solid #acacac;
+    padding: 5px;
+    text-align: center;
+    margin-right: 5px;
+}
+
+table.general tbody tr td.titulo111 {
+    background-color: #ffffff;
+    border-top: 1px solid #d8d8d8;
+    padding: 5px;
+}
+
+table.fuente_general {
+    font-size: 11px;
+    border-spacing: 0px;
+}
+
+table.fuente_general tr td {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #999999;
+    background-color: #ededed;
+    border-top: 1px solid #d5d5d5;
+    padding: 5px;
+}
+
+table.fuente_general thead tr th {
+    text-align: left;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #999999;
+    background-color: #ededed;
+    border: 1px solid #d5d5d5;
+    padding: 5px;
+}
+
+table.listado {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    border: 0px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table.listado thead tr th {
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: #8dcff4;
+    border: 1px solid white;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table.listado tbody tr td.texto {
+    border: 1px solid #acacac;
+    padding: 5px;
+}
+
+table.listado tbody tr td.numero {
+    border: 1px solid #acacac;
+    padding: 5px;
+    text-align: right;
+    margin-right: 3px;
+}
+
+
+/* modificado nancy */
+
+
+/*
+.ubigeo_titulo{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color:#333333;
+	text-align:center;
+	font-weight:bold;
+	background-color:#FEDA79;
+	height:30px;
+	text-transform:uppercase;
+}
+.ubigeo_titulo_cuerpo{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color:#333333;
+	text-align:center;
+	font-weight:bold;
+	background-color:#FFF1CA;
+	height:25px;
+	text-transform:uppercase;
+}
+.ubigeo_fila{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#333333;
+	text-align:center;
+	font-weight:bold;
+	height:20px;
+	text-align:center;
+}
+
+.ubigeo_fila_fondo{
+background-color:#FFF7E4;
+}
+
+.cabecera{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color:#333333;
+	text-align:center;
+	font-weight:bold;
+	background-color:#FEDA79;
+	height:30px;
+}
+.titulo{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 11;
+	color:#333333;
+	text-align:left;
+	font-weight:bold;
+	margin:2px 10px 2px 5px;
+} 
+
+.fondo_titulo{
+	background-color:#FFF1CA;
+}
+.fila{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 10;
+	color:#333333;
+	text-align:left;
+	height:25px;
+	margin:2px 10px 2px 10px;
+}
+.fila_enumeracion{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 10;
+	color:#333333;
+	text-align:center;
+	margin:2px 10px 2px 10px;
+}
+.fila_numeracion{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font-size: 10;
+	color:#333333;
+	text-align:right;
+	margin:2px 3px 2px 10px;
+}
+.fondo_fila{
+	background-color:#FFF7E4;
+}
+.fuente{
+	font-family:Calibri, Arial, Helvetica, sans-serif;
+	font:size:8;
+	color:#000000;
+	text-align:left;
+	margin:2px 10px 2px 10px;
+}
+.fondo_fuente{
+	background-color:#FFFFFF;
+}
+.consulta_titulo{
+	font-family:Calibri, Arial, Helvetica;
+	background-image:url(../imajes/header_bg.jpg);
+	background-repeat:repeat-x;
+	height:45px;
+	color:#FFFFFF;
+	text-align:center;
+	font-weight: bold;
+	font-size: 14px;
+} */

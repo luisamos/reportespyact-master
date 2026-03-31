@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link data-n-head="ssr" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <title>Reporte</title>
+</head>
+<style>
+    html {
+        font-family: Roboto!important;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    strong {
+        font-style: italic;
+    }
+    
+    .rcorners2 {
+        border-radius: 25px;
+        border: 2px solid #2980b9;
+        padding: 20px;
+        padding-bottom: 20px;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+</style>
+
+<body>
+
+</body>
+<div id="cabecera" class="rcorners2">
+
+</div>
+<div id="detalle" class="rcorners2">
+</div>
+<strong>Fuente: </strong> <span style=" font-style: italic;">{{fuente}}</span>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript">
+    var des = JSON.parse('{{general| safe}}');
+    console.log(des);
+    // ACUMULADOS
+    if (des.general.length) {
+        Highcharts.chart('cabecera', {
+            chart: {
+                type: 'bar',
+                style: {
+                    fontFamily: 'calibri'
+                }
+            },
+            title: {
+                text: 'Resumen Acumulado Financiero',
+                style: {
+                    fontSize: '22px',
+                    fontWeight: 'bold'
+                }
+            },
+            xAxis: {
+                categories: ['Soles'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Soles',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' soles'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                itemStyle: {
+                    fontSize: '16px'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Costo  Viable',
+                data: [des.general[0].monto_viable],
+                color: '#a6a6a6'
+            }, {
+                name: 'Costo Total',
+                data: [des.general[0].monto_inversion_actual],
+                color: '#002060'
+            }, {
+                name: 'Devengado Acumulado',
+                data: [des.general[0].monto_dev_acumulado],
+                color: '#c00000'
+            }]
+        });
+    } else {
+        document.getElementById('cabecera').innerHTML = "No se encuentra información del proyecto seleccionado";
+    }
+    // DETALLE ANUAL
+
+    if (Object.keys(des.detalle).length) {
+        Highcharts.chart('detalle', {
+            chart: {
+                type: 'column',
+                style: {
+                    fontFamily: 'calibri'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: 'Histórico Financiero',
+                style: {
+                    fontSize: '22px',
+                    fontWeight: 'bold'
+                }
+            },
+            xAxis: {
+                categories: des.detalle.categories,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            legend: {
+                itemStyle: {
+                    fontSize: '16px'
+                }
+            },
+            tooltip: {
+
+                formatter: function() {
+
+                    let pim = des.detalle.series[0].data[this.point.index].toFixed(2);;
+                    let dev = des.detalle.series[1].data[this.point.index].toFixed(2);;
+                    let colorP = des.detalle.series[0].color;
+                    let colorD = des.detalle.series[1].color;
+                    return '<table cellpadding="0" cellspacing="0" style="text-align: left;"><tr><td style="color:' + colorP + '"><b>PIM:</b></td><td>' + numComas(pim) + '</td><tr><td style="color:' + colorD + '"><b>DEVENGADO:</b></td><td>' + numComas(dev) + '</td><tr><td><b>AVANCE:</b></td><td>' + avance(pim, dev) + '%'
+
+                },
+                useHTML: true
+
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        inside: true
+                    }
+                },
+                column: {
+                    //pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: des.detalle.series
+        });
+    } else {
+        document.getElementById('detalle').innerHTML = "No se encuentra información financiera histórica";
+    }
+
+    function numComas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function avance(n1, n2) {
+        let avance = Math.round((n2 / n1) * 100);
+        return avance || 0;
+    }
+</script>
+
+</html>

@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  app:
+    restart: on-failure
+    build:
+      context: .
+      target: production
+    ports:
+      - "5010:5000"
+    env_file:
+      - .env
+    environment:
+      # export DOCKER_GATEWAY_HOST=$(hostname -I |awk '{print $1}')
+      - DB_HOST=${LOCAL_HOST_IP}
