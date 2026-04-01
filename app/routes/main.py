@@ -3,12 +3,11 @@ from __future__ import annotations
 import json
 from datetime import datetime
 
-from flask import Blueprint, jsonify, make_response, render_template, request
+from flask import Blueprint, abort, jsonify, make_response, render_template, request
 
 from ..services import query_service as qs
 
 main_bp = Blueprint('main', __name__)
-
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -21,61 +20,107 @@ def _obj_consulta(anio, ubigeo, act, fun='', nivel='', sector='',
 
 
 def _normalize_base_url(raw: str) -> str:
-    if not raw:
-        return ''
-    url = raw.strip()
-    if url and not url.startswith(('http://', 'https://')):
-        url = f'http://{url}'
-    return url.rstrip('/')
+  if not raw:
+    return ''
+  url = raw.strip()
+  if url and not url.startswith(('http://', 'https://')):
+    url = f'http://{url}'
+  return url.rstrip('/')
 
 
 def _base_url() -> str:
-    from flask import current_app
-    cfg = current_app.config
-    raw = cfg['BASE_URL']
-    return _normalize_base_url(raw)
+  from flask import current_app
+  cfg = current_app.config
+  raw = cfg['BASE_URL']
+  return _normalize_base_url(raw)
 
 
 def _checked(act: str) -> dict:
-    return {
-        'pchecked': 'checked' if act in ('1', '2') else '',
-        'achecked': 'checked' if act in ('1', '3') else '',
-    }
+  return {
+    'pchecked': 'checked' if act in ('1', '2') else '',
+    'achecked': 'checked' if act in ('1', '3') else '',
+  }
+
+def _is_valid_ubigeo(ubigeo: str) -> bool:
+  """Valida formato de ubigeo permitido por el reporte (2, 4 o 6 dígitos)."""
+  return ubigeo.isdigit() and len(ubigeo) in (2, 4, 6)
 
 
 # ---------------------------------------------------------------------------
 # Rutas principales
 # ---------------------------------------------------------------------------
 
-@main_bp.route('/<int:anio>/<ubigeo>', defaults={'act': '1', 'sec': ''}, methods=['GET'])
-@main_bp.route('/<int:anio>/<ubigeo>/<act>/', defaults={'sec': ''}, methods=['GET'])
-@main_bp.route('/<int:anio>/<ubigeo>/<act>/<sec>/', methods=['GET'])
+@main_bp.route('/ping', methods=['GET'])
+def ping():
+    """Endpoint de salud para validar que el contenedor recibe tráfico."""
+    return jsonify({'status': 'ok'}), 200
+
+
+@main_bp.route('/diag/request', methods=['GET'])
+def diag_request():
+    """
+    Diagnóstico de ruteo/proxy.
+    Permite verificar qué path está recibiendo Flask detrás del orquestador.
+    """
+    forwarded_headers = {
+        k: request.headers.get(k, '')
+        for k in (
+            'Host',
+            'X-Forwarded-For',
+            'X-Forwarded-Host',
+            'X-Forwarded-Proto',
+            'X-Forwarded-Port',
+            'X-Forwarded-Prefix',
+            'X-Original-URI',
+            'X-Rewrite-URL',
+        )
+    }
+    return jsonify({
+        'method': request.method,
+        'url': request.url,
+        'base_url': request.base_url,
+        'host_url': request.host_url,
+        'path': request.path,
+        'full_path': request.full_path,
+        'script_root': request.script_root,
+        'url_root': request.url_root,
+        'headers': forwarded_headers,
+    }), 200
+
+@main_bp.route('/<int:anio>/<ubigeo>', defaults={'act': '1', 'sec': ''}, methods=['GET'], strict_slashes=False)
+@main_bp.route('/<int:anio>/<ubigeo>/<act>/', defaults={'sec': ''}, methods=['GET'], strict_slashes=False)
+@main_bp.route('/<int:anio>/<ubigeo>/<act>/<sec>/', methods=['GET'], strict_slashes=False)
 def home(anio, ubigeo, act, sec):
-    anio = str(anio)  # normalizar a string para templates y servicios
-    demo = request.args.get('ppto', '')
-    amb  = request.args.get('amb', '')
-    base = _base_url()
+  if not _is_valid_ubigeo(str(ubigeo)):
+    abort(404)
 
-    nivel   = qs.get_nivel(_obj_consulta(anio, ubigeo, act, sector=sec, cat=demo, amb=amb))
-    funcion = qs.get_funcion(anio, ubigeo, act)
-    ppto    = qs.get_ppto(anio, ubigeo, act, '')
-    ubigeo_ = qs.get_ubigeo(ubigeo)
-    fecha   = qs.get_fecha()
+  anio = str(anio)  # normalizar a string para templates y servicios
+  demo = request.args.get('ppto', '')
+  amb  = request.args.get('amb', '')
+  base = _base_url()
 
-    link_comp = (
-        base + '%2F' + anio + '%2F' + ubigeo + '%2F' + act
-        if not sec else
-        base + '%2F' + anio + '%2F' + ubigeo + '%2F' + act + '%2F' + sec
-    )
+  nivel   = qs.get_nivel(_obj_consulta(anio, ubigeo, act, sector=sec, cat=demo, amb=amb))
+  funcion = qs.get_funcion(anio, ubigeo, act)
+  ppto    = qs.get_ppto(anio, ubigeo, act, '')
+  ubigeo_ = qs.get_ubigeo(ubigeo)
+  if not ubigeo_:
+    abort(404)
+  fecha   = qs.get_fecha()
 
-    return render_template(
-        '/reporte-proy-act/index.html',
-        act=act, sec=sec, amb=amb, anio=anio,
-        cod_ubigeo=ubigeo, fecha=fecha,
-        title='Consulta de Reporte de Inversión Pública',
-        cat=demo, nivel=nivel, funcion=funcion, ppto=ppto,
-        base=base, ubigeo=ubigeo_, checked=_checked(act), link=link_comp,
-    )
+  link_comp = (
+      base + '%2F' + anio + '%2F' + ubigeo + '%2F' + act
+      if not sec else
+      base + '%2F' + anio + '%2F' + ubigeo + '%2F' + act + '%2F' + sec
+  )
+
+  return render_template(
+      '/reporte-proy-act/index.html',
+      act=act, sec=sec, amb=amb, anio=anio,
+      cod_ubigeo=ubigeo, fecha=fecha,
+      title='Consulta de Reporte de Inversión Pública',
+      cat=demo, nivel=nivel, funcion=funcion, ppto=ppto,
+      base=base, ubigeo=ubigeo_, checked=_checked(act), link=link_comp,
+  )
 
 
 @main_bp.route('/violencia-familiar/<int:anio>/<ubigeo>/<act>')
