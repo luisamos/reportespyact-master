@@ -5,7 +5,9 @@ from .utils.formatters import FuncionesPY
 
 
 def create_app(config_name: str = 'default') -> Flask:
-    static_url_path = f'{URL_PREFIX}/static' if URL_PREFIX else '/static'
+    # Detrás de reverse proxy usamos X-Forwarded-Prefix (ProxyFix) para el prefijo.
+    # Evita duplicar /reportespyact en rutas y recursos estáticos.
+    static_url_path = '/static'
     app = Flask(
         __name__,
         template_folder='../templates',
@@ -20,18 +22,22 @@ def create_app(config_name: str = 'default') -> Flask:
 
     # Registrar blueprints
     from .routes.main import main_bp
-    app.register_blueprint(main_bp, url_prefix=URL_PREFIX)
+    # Rutas base (proxy que recorta prefijo y usa SCRIPT_NAME/X-Forwarded-Prefix)
+    app.register_blueprint(main_bp)
+    # Compatibilidad para despliegues donde /reportespyact llega directo a la app.
+    if URL_PREFIX:
+        app.register_blueprint(main_bp, url_prefix=URL_PREFIX, name='main_prefixed')
 
     # Context processors globales
     _fn = FuncionesPY()
 
     @app.context_processor
     def utility_processor():
-        return dict(
-            format_price=_fn.formatMoneda,
-            barra=_fn.barra,
-            is_dev=IS_DEV,
-        )
+      return dict(
+          format_price=_fn.formatMoneda,
+          barra=_fn.barra,
+          is_dev=IS_DEV,
+      )
 
     # Manejadores de error
     from flask import make_response, render_template
